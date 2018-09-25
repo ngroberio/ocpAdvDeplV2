@@ -1,46 +1,46 @@
 ---
-- name: Initiate Host file template with GUID
+- name: INITIATE HOST TEMPLATE FILE WITH GUID PARAM
   hosts: localhost
   roles:
     - inventory
 
-- name: Prepare Environment Play
+- name: PREPARE ENVIRONMENT
   hosts: all
   roles:
-    - prep-env
+    - PREPARE-ENV-ROLE
 
-- name: Import prerequisites playbook
+- name: IMPORT PREREQUISITES
   import_playbook: "/usr/share/ansible/openshift-ansible/playbooks/prerequisites.yml"
 
-- name: Deploy ocp cluster playbook
+- name: DEPLOY OCP CLUSTER PLABOOK
   import_playbook: "/usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml"
 
 - name: AFTER INSTALLATION
   hosts: all,localhost
   roles:
-    - AFTER-INSTALL
+    - AFTER-INSTALL-ROLE
 
 - name: SMOKE TEST ROLE
   hosts: localhost
   roles:
     - SMOKE-TEST-ROLE
 
-- name: Deploy Jenkins
+- name: DEPLOY JNEKINS TO CICD PROJECT
   hosts: localhost
   roles:
     - cicd
 
-- name: Deploy OpenShift Tasks Project
+- name: DEPLOY OPENSHIFT TASKS PROJECT
   hosts: localhost
   roles:
     - deploy-tasks-app
 
-- name: Prepare cluster for Multitenant project setup
+- name: APPLY MULTINANT PROJECT SETUP
   hosts: masters,localhost
   roles:
     - multitenant
 
-- name: On Board users groups projects and applications
+- name: ON BOARD NEW USERS AND GROUPS
   hosts: masters,localhost
   roles:
     - deploy-client-projects
