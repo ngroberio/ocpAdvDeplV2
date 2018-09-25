@@ -10,18 +10,18 @@ items:
 - kind: ProjectRequest
   apiVersion: v1
   metadata:
-    name: tasks-dev
+    name: cicd-dev
     creationTimestam: null
   displayName: Openshift Tasks - Dev
 - kind: ProjectRequest
   apiVersion: v1
   metadata:
-    name: tasks-stage
+    name: cicd-test
     creationTimestam: null
   displayName: Openshift Tasks - Stage
 - kind: ProjectRequest
   apiVersion: v1
   metadata:
-    name: tasks-prod
+    name: cicd-prod
     creationTimestam: null
   displayName: Openshift Tasks - Prod

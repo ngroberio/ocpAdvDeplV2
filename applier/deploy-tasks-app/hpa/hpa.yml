@@ -5,7 +5,7 @@ metadata:
     autoscaling.alpha.kubernetes.io/conditions: '[{"type":"AbleToScale","status":"True","lastTransitionTime":"2018-08-16T01:04:54Z","reason":"SucceededGetScale","message":"the
       HPA controller was able to get the target''s current scale"},{"type":"ScalingActive","status":"False","lastTransitionTime":"2018-08-16T01:04:54Z","reason":"FailedGetResourceMetric","message":"the
       HPA was unable to compute the replica count: missing request for cpu on container
-      openshift-tasks in pod tasks-dev/openshift-tasks-1-fc2nw"}]'
+      openshift-tasks in pod cicd-dev/openshift-tasks-1-fc2nw"}]'
   name: openshift-tasks
 spec:
   maxReplicas: 3

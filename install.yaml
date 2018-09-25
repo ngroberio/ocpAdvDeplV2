@@ -9,10 +9,10 @@
   roles:
     - prep-env
 
-- name: install pre-req
+- name: Import prerequisites playbook
   import_playbook: "/usr/share/ansible/openshift-ansible/playbooks/prerequisites.yml"
 
-- name: install ocp
+- name: Deploy ocp cluster playbook
   import_playbook: "/usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml"
 
 - name: Post Install

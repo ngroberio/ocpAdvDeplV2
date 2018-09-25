@@ -1,5 +1,5 @@
 APPLICATION_NAME=openshift-tasks
-NAMESPACE=tasks-stage
+NAMESPACE=cicd-test
 SA_NAME=jenkins
 #SA_NAMESPACE=basic-spring-boot-build
 SA_NAMESPACE=cicd
