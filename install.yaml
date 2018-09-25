@@ -28,7 +28,7 @@
 - name: DEPLOY JNEKINS TO CICD PROJECT
   hosts: localhost
   roles:
-    - cicd
+    - CICD-PIPELINE-ROLE
 
 - name: DEPLOY OPENSHIFT TASKS PROJECT
   hosts: localhost
