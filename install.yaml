@@ -43,4 +43,4 @@
 - name: ON BOARD NEW USERS AND GROUPS
   hosts: masters,localhost
   roles:
-    - deploy-client-projects
+    - CREATE-PROJECTS-ROLE
