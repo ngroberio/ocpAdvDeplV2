@@ -1,8 +1,6 @@
 ---
-#- name: Smoke Test
-#  script: deploy-nodejs-mongodb-persistent.sh
 
-- name: add localhost to seed-hosts
+- name: ADD LOCALHOST TO SEED HOSTS
   add_host:
     hostname: localhost
     groups:
@@ -11,36 +9,35 @@
     ansible_host: localhost
   when: "inventory_hostname == 'localhost'"
 
-- name: load inventory info for smoke test
+- name: LOAD ALL THE INVENTORY INFORMATION TO THE SMOKE TEST
   include_vars:
     dir: vars
     files_matching: seed-hosts.yml
   when: "inventory_hostname == 'localhost'"
 
-- name: Deploy smoke test app using applier
+- name: DEPLOY THE SMOKE TEST APPLICATION USING ANSIBLE APPLIER
   import_role:
     name: openshift-applier
   when: "inventory_hostname == 'localhost'"
 
-- name: Test URL
-  shell: echo http://$(sudo oc get route -n smoke-test | awk 'NR>1 {print $2}')  
+- name: TEST SMOKE TEST URL
+  shell: echo http://$(sudo oc get route -n smoke-test | awk 'NR>1 {print $2}')
   register: url
 
-- name: debug 
+- name: DEBUG SMOKE TEST URL STDOUT
   debug:
     msg: "{{ url.stdout }}"
 
-- name: "wait for pod to be alive"
+- name: "CHECK IF POD IS ALIVE"
   uri:
     url: "{{ url.stdout }}"
     status_code: 200
   register: result
   until: result.status == 200
   retries: 120
-  delay: 2 
+  delay: 2
 
-- name: Smoke Test Passed
+- name: SMOKE TEST SUCEEDED MESSAGE
   debug:
-    msg: "***SMOKE TEST PASSED***"
+    msg: ">>>>>>> [ SMOKE TEST SUCCEEDED ] <<<<<<<<<"
   when: result.status == 200
-

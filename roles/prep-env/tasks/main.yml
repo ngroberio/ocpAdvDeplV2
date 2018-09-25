@@ -1,22 +1,22 @@
 ---
-- name: All GUID env variable
+- name: SET GUID ENV VARIABLE
   shell: export GUID=`hostname | cut -d"." -f2`; echo "export GUID=$GUID" >> $HOME/.bashrc
-  tags: set-guid 
+  tags: set-guid
 
-- name: Verify Docker installation
-  yum: 
+- name: DOCKER INSTALLATION VERIFICATION
+  yum:
     name: docker
     state: present
   when: "'nodes' in group_names"
   tags: verify-docker
- 
-- name: Configuration of Docker
+
+- name: DOCKER CONFIGURATION
   shell: systemctl restart docker
   when: "'nodes' in group_names"
-  tags: verify-docker 
+  tags: verify-docker
 
-- name: Verify NFS installed on nfs node
-  yum: 
+- name: CHECK NFS PACKAGES NFS-UTILS RPCBIND IN NFS NODES
+  yum:
     name: "{{ packages }}"
     state: present
   vars:
@@ -26,8 +26,7 @@
   when: "'nfs' in group_names"
   tags: verify-nfs
 
-- name: check exportfs
+- name: EXPORTFS CHECKS
   shell : exportfs
   when: "'nfs' in group_names"
   tags: verify-nfs
-

@@ -23,7 +23,7 @@
 - name: Smoke Test
   hosts: localhost
   roles:
-    - smoke-test
+    - SMOKE-TEST-ROLE
 
 - name: Deploy Jenkins
   hosts: localhost
