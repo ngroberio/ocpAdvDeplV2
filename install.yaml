@@ -15,12 +15,12 @@
 - name: Deploy ocp cluster playbook
   import_playbook: "/usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml"
 
-- name: Post Install
+- name: AFTER INSTALLATION
   hosts: all,localhost
   roles:
-    - post-install
+    - AFTER-INSTALL
 
-- name: Smoke Test
+- name: SMOKE TEST ROLE
   hosts: localhost
   roles:
     - SMOKE-TEST-ROLE
