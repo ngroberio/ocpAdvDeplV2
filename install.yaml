@@ -33,7 +33,7 @@
 - name: DEPLOY OPENSHIFT TASKS PROJECT
   hosts: localhost
   roles:
-    - deploy-tasks-app
+    - DEPLOY-APPS-ROLE
 
 - name: APPLY MULTINANT PROJECT SETUP
   hosts: masters,localhost
