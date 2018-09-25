@@ -1,1 +1,0 @@
-# os-adv-depl-hw

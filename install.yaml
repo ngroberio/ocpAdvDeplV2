@@ -1,5 +1,5 @@
 ---
-- name: Set GUID in host file
+- name: Initiate Host file template with GUID
   hosts: localhost
   roles:
     - inventory
@@ -44,4 +44,3 @@
   hosts: masters,localhost
   roles:
     - deploy-client-projects
-
