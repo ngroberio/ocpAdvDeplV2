@@ -1,6 +1,6 @@
 ---
-# This role setsup the host file 
-- name: Creates the hosts file
+# This role setsup the host file
+- name: PREPARE HOSTS FILE
   template: src=hosts.j2 dest=/etc/ansible/hosts
 
 - name: refresh
