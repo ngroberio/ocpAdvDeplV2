@@ -2,7 +2,7 @@
 - name: INITIATE HOST TEMPLATE FILE WITH GUID PARAM
   hosts: localhost
   roles:
-    - inventory
+    - HOSTS-TEMPLATE
 
 - name: PREPARE ENVIRONMENT
   hosts: all
