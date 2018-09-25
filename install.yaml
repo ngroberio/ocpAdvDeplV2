@@ -38,7 +38,7 @@
 - name: APPLY MULTINANT PROJECT SETUP
   hosts: masters,localhost
   roles:
-    - multitenant
+    - MULTITENANT-ROLE
 
 - name: ON BOARD NEW USERS AND GROUPS
   hosts: masters,localhost
