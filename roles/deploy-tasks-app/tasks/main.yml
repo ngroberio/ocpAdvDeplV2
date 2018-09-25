@@ -1,0 +1,19 @@
+---
+- name: add localhost to seed-hosts
+  add_host:
+    hostname: localhost
+    groups:
+      - seed-hosts
+    ansible_connection: local
+    ansible_host: localhost
+
+- name: load inventory info from seed-hosts
+  include_vars:
+    dir: vars
+    files_matching: seed-hosts.yml
+
+- name: Deploy application and objects
+  import_role:
+    name: openshift-applier
+  when: "inventory_hostname == 'localhost'"
+

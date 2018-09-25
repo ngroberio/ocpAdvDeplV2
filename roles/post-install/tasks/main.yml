@@ -1,0 +1,106 @@
+---
+- name: Copy config file from masters
+  fetch:
+    src: /root/.kube/config
+    dest: /root/.kube/config
+    flat: yes
+    tags: check-role
+  when: "'masters' in group_names"
+
+- name: Check system:admin role
+  shell: oc whoami
+  when: "inventory_hostname == 'localhost'"
+  tags: check-role 
+
+- name: Check nodes
+  shell: oc get nodes
+  when: "inventory_hostname == 'localhost'"
+  tags: check-nodes
+
+- name: create pv directories
+  file:
+    dest: "/srv/nfs/user-vols/pv{{ item }}"
+    state: directory
+    group: nfsnobody
+    owner: nfsnobody
+    mode: 0777
+  with_sequence: start=1 end=50
+  when: "'nfs' in group_names"
+  tags: create-pv-dir
+
+- name: configure exports
+  shell: echo /srv/nfs/user-vols/pv{{ item }} >> /etc/exports.d/openshift-uservols.exports
+  with_sequence: start=1 end=50
+  when: "'nfs' in group_names"
+  tags: configure-exports
+
+- name: create dir for pv files
+  file:
+    dest: ./applier/pvs
+    state: directory
+  when: "inventory_hostname == 'localhost'"
+  tags: create-pv-yaml-dir
+    
+- name: Create pv yaml - RWO
+  vars:
+    volsize: '5Gi'
+    volume: 'pv{{ item }}'
+    mode: 'ReadWriteOnce'
+    reclaimPolicy: 'Recycle'
+  template: src=pv.j2 dest=./applier/pvs/{{ volume }}.yml
+  with_sequence: start=1 end=25
+  when: "inventory_hostname == 'localhost'"
+
+- name: Create pv yaml - RWX
+  vars:
+    volsize: '10Gi'
+    volume: 'pv{{ item }}'
+    mode: 'ReadWriteMany'
+    reclaimPolicy: 'Retain'
+  template: src=pv.j2 dest=./applier/pvs/{{ volume }}.yml
+  with_sequence: start=26 end=50
+  when: "inventory_hostname == 'localhost'"
+
+#NOT USED - SWITCH OVER TO APPLIER
+#- name: create PVs
+#  shell: cat ./pvs/* | oc create -f -
+#  when: "inventory_hostname == 'localhost'"
+
+- name: add localhost to seed-hosts
+  add_host:
+    hostname: localhost
+    groups:
+      - seed-hosts
+    ansible_connection: local
+    ansible_host: localhost
+  when: "inventory_hostname == 'localhost'"
+
+- name: load inventory info for PV 
+  include_vars:
+    dir: vars
+    files_matching: seed-hosts.yml
+  when: "inventory_hostname == 'localhost'"
+
+- name: Create PV
+  import_role:
+    name: openshift-applier
+  when: "inventory_hostname == 'localhost'"
+
+
+- name: check pv
+  shell: oc get pv
+  when: "inventory_hostname == 'localhost'"
+
+- name: Create Admin User
+  script: create-users.sh
+  when: "'masters' in group_names"
+
+
+- name: Fix NFS Persistence
+  shell: "{{ item }}"
+  with_items:
+    - "docker pull registry.access.redhat.com/openshift3/ose-recycler:latest"
+    - "docker tag registry.access.redhat.com/openshift3/ose-recycler:latest registry.access.redhat.com/openshift3/ose-recycler:v3.9.30"
+  when: "'nodes' in group_names"
+  tags: pull-recycler
+

@@ -1,0 +1,7 @@
+openshift_cluster_content:
+- object: pv
+  content:
+  - name: "create pvs"
+    file: "{{role_path}}/../../applier/pvs/"
+    action: create
+
