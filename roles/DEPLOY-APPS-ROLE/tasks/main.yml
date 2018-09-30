@@ -14,5 +14,5 @@
 
 - name: CREATE APPS AND OCP OBJECTS
   import_role:
-    name: openshift-applier
+    name: OPENSHIFT-APPLIER
   when: "inventory_hostname == 'localhost'"
