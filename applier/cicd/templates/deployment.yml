@@ -20,7 +20,7 @@ metadata:
     openshift.io/provider-display-name: Red Hat, Inc.
     openshift.io/support-url: https://access.redhat.com
     tags: instant-app,jenkins
-  creationTimestamp: 2018-08-15T17:08:20Z
+  creationTimestamp: 2018-09-31T17:08:20Z
   name: jenkins-persistent
   namespace: openshift
   resourceVersion: "41941"
@@ -214,11 +214,10 @@ parameters:
   name: NAMESPACE
   value: openshift
 - description: The Namespace where the Jenkins pod resides.
-  displayName: Project to deploy Jenkins 
+  displayName: Project to deploy Jenkins
   name: CICD_NAMESPACE
   value: cicd
 - description: Name of the ImageStreamTag to be used for the Jenkins image.
   displayName: Jenkins ImageStreamTag
   name: JENKINS_IMAGE_STREAM_TAG
   value: jenkins:2
-

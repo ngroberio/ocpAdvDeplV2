@@ -21,7 +21,7 @@ metadata:
     openshift.io/support-url: https://access.redhat.com
     tags: quickstart,nodejs
     template.openshift.io/bindable: "false"
-  creationTimestamp: 2018-08-15T17:08:20Z
+  creationTimestamp: 2018-09-31T19:56:20Z
   name: nodejs-mongo-persistent
   namespace: openshift
   resourceVersion: "41943"
@@ -369,4 +369,3 @@ parameters:
 - description: The custom NPM mirror URL
   displayName: Custom NPM Mirror URL
   name: NPM_MIRROR
-
