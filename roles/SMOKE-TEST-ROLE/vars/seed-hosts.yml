@@ -1,12 +1,11 @@
 openshift_cluster_content:
 - object: project
   content:
-  - name: "create smoke test project"
-    file: "{{role_path}}/../../applier/smoke-test/projects/projects.yml"
+  - name: "CREATE SMOKE TEST PROJECT"
+    file: "{{role_path}}/../../applier/SMOKE-TEST/PROJECTS/projects.yml"
     action: create
 - object: deployments
   content:
-  - name: "deploy smoke test app"
-    template: "{{role_path}}/../../applier/smoke-test/templates/deployment.yml"
-    params: "{{role_path}}/../../applier/smoke-test/params/smoke-test.env"
-
+  - name: "DEPLOY SMOKE TEST APP"
+    template: "{{role_path}}/../../applier/SMOKE-TEST/TEMPLATES/deployment.yml"
+    params: "{{role_path}}/../../applier/SMOKE-TEST/PARAMS/smoke-test.env"

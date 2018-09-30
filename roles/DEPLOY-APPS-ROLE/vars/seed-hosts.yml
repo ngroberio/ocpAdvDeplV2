@@ -13,7 +13,7 @@ openshift_cluster_content:
     namespace: "{{cicd_dev_namespace}}"
   - name: "create limitrange stage"
     file: "{{role_path}}/../../applier/deploy-tasks-app/limitrange/limitrange.yml"
-    params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-stage"
+    params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-test"
     action: create
     namespace: "{{cicd_test_namespace}}"
   - name: "create limitrange prod"
@@ -31,7 +31,7 @@ openshift_cluster_content:
     namespace: "{{cicd_dev_namespace}}"
   - name: "create hpa stage"
     file: "{{role_path}}/../../applier/deploy-tasks-app/hpa/hpa.yml"
-    params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-stage"
+    params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-test"
     action: create
     namespace: "{{cicd_test_namespace}}"
   - name: "create hpa prod "
@@ -47,7 +47,7 @@ openshift_cluster_content:
     params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-dev"
   - name: "deply stage environment"
     template: "{{role_path}}/../../applier/deploy-tasks-app/templates/deployment.yml"
-    params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-stage"
+    params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-test"
   - name: "deply prod environment"
     template: "{{role_path}}/../../applier/deploy-tasks-app/templates/deployment.yml"
     params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-prod"

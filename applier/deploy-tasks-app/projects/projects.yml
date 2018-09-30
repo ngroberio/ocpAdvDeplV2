@@ -18,7 +18,7 @@ items:
   metadata:
     name: cicd-test
     creationTimestam: null
-  displayName: Openshift Tasks - Stage
+  displayName: Openshift Tasks - Test
 - kind: ProjectRequest
   apiVersion: v1
   metadata:
