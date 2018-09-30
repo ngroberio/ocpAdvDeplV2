@@ -2,11 +2,10 @@ openshift_cluster_content:
 - object: project
   content:
   - name: "create project teamplates"
-    file: "{{role_path}}/../../applier/multitenant/project-templates/"
+    file: "{{role_path}}/../../applier/MULTITENANT/PROJECT-TEMPLATES/"
     action: create
 - object: users-groups
   content:
   - name: "create project teamplates"
-    file: "{{role_path}}/../../applier/multitenant/user-group-templates/"
+    file: "{{role_path}}/../../applier/MULTITENANT/USER-GROUP-TEMPLATES/"
     action: create
-

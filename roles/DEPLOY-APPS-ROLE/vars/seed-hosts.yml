@@ -1,58 +1,58 @@
 openshift_cluster_content:
 - object: projects
   content:
-  - name: "create environments"
-    file: "{{role_path}}/../../applier/deploy-tasks-app/projects/projects.yml"
+  - name: "CREATE ENVIRONMENTS"
+    file: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/PROJECTS/projects.yml"
     action: create
 - object: limitrange
   content:
-  - name: "create limitrange"
-    file: "{{role_path}}/../../applier/deploy-tasks-app/limitrange/limitrange.yml"
-    params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-dev"
+  - name: "CREATE LIMITRANGE"
+    file: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/LIMITRANGE/limitrange.yml"
+    params: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/PARAMS/deployment-dev"
     action: create
     namespace: "{{cicd_dev_namespace}}"
-  - name: "create limitrange stage"
-    file: "{{role_path}}/../../applier/deploy-tasks-app/limitrange/limitrange.yml"
-    params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-test"
+  - name: "CREATE LIMITRANGE TEST"
+    file: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/LIMITRANGE/limitrange.yml"
+    params: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/PARAMS/deployment-test"
     action: create
     namespace: "{{cicd_test_namespace}}"
-  - name: "create limitrange prod"
-    file: "{{role_path}}/../../applier/deploy-tasks-app/limitrange/limitrange.yml"
-    params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-prod"
+  - name: "CREATE LIMITRANGE PROD"
+    file: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/LIMITRANGE/limitrange.yml"
+    params: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/PARAMS/deployment-prod"
     action: create
     namespace: "{{cicd_prod_namespace}}"
 
 - object: hpa
   content:
-  - name: "create hpa"
-    file: "{{role_path}}/../../applier/deploy-tasks-app/hpa/hpa.yml"
-    params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-dev"
+  - name: "CREATE HPA"
+    file: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/HPA/hpa.yml"
+    params: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/PARAMS/deployment-dev"
     action: create
     namespace: "{{cicd_dev_namespace}}"
-  - name: "create hpa stage"
-    file: "{{role_path}}/../../applier/deploy-tasks-app/hpa/hpa.yml"
-    params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-test"
+  - name: "CREATE HPA TEST"
+    file: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/HPA/hpa.yml"
+    params: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/PARAMS/deployment-test"
     action: create
     namespace: "{{cicd_test_namespace}}"
-  - name: "create hpa prod "
-    file: "{{role_path}}/../../applier/deploy-tasks-app/hpa/hpa.yml"
-    params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-prod"
+  - name: "CREATE HPA PROD "
+    file: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/HPA/hpa.yml"
+    params: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/PARAMS/deployment-prod"
     action: create
     namespace: "{{cicd_prod_namespace}}"
 
 - object: deployments
   content:
-  - name: "deploy dev environment"
-    template: "{{role_path}}/../../applier/deploy-tasks-app/templates/deployment.yml"
-    params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-dev"
-  - name: "deply stage environment"
-    template: "{{role_path}}/../../applier/deploy-tasks-app/templates/deployment.yml"
-    params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-test"
-  - name: "deply prod environment"
-    template: "{{role_path}}/../../applier/deploy-tasks-app/templates/deployment.yml"
-    params: "{{role_path}}/../../applier/deploy-tasks-app/params/deployment-prod"
+  - name: "DEPLOY DEV ENV"
+    template: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/TEMPLATES/deployment.yml"
+    params: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/PARAMS/deployment-dev"
+  - name: "DEPLOY TEST ENV"
+    template: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/TEMPLATES/deployment.yml"
+    params: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/PARAMS/deployment-test"
+  - name: "DEPLOY PROD ENV"
+    template: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/TEMPLATES/deployment.yml"
+    params: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/PARAMS/deployment-prod"
 - object: builds
   content:
-  - name: "deploy build pipeline to dev"
-    template: "{{role_path}}/../../applier/deploy-tasks-app/templates/build.yml"
-    params: "{{role_path}}/../../applier/deploy-tasks-app/params/build-dev"
+  - name: "DEPLOY PIPELINE TO DEV"
+    template: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/TEMPLATES/build.yml"
+    params: "{{role_path}}/../../applier/DEPLOY-TASKS-APP/PARAMS/build-dev"
